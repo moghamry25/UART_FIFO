@@ -1,57 +1,37 @@
-Data Transmission
-Check tx_ready status flag
+UART Controller with Baud Rate Generator and FIFO
+A highly configurable UART (Universal Asynchronous Receiver/Transmitter) IP core designed for reliable serial communication, featuring a programmable baud rate generator and FIFO (First-In-First-Out) buffers for efficient data handling.
 
-Write data to TX FIFO buffer
+Key Features
+Programmable Baud Rate Generator
 
-Hardware automatically handles serialization and transmission
+Supports standard baud rates (9600, 115200, etc.) and custom frequencies
 
-Data Reception
-Monitor rx_ready status flag
+Automatic divisor calculation based on system clock
 
-Read data from RX FIFO buffer
+Error < 1% clock accuracy
 
-Check error flags for data integrity
+Dual FIFO Buffers
 
-Configuration Parameters
-Parameter	Description	Default Value
-CLK_FREQ	System clock frequency in Hz	100_000_000
-BAUD_RATE	Desired communication speed	115_200
-DATA_BITS	Number of data bits (5-9)	8
-PARITY_TYPE	0: None, 1: Even, 2: Odd	0
-STOP_BITS	Number of stop bits (1 or 2)	1
-FIFO_DEPTH	Depth of TX/RX FIFO buffers	16
-Implementation Details
-Baud Rate Generation
+16-byte deep FIFOs for both TX and RX paths (configurable depth)
 
-The generator creates precise timing pulses using a fractional divider architecture.
+Reduces data loss risk during high-speed communication
 
-FIFO Architecture
-Circular buffer implementation
+Status flags for FIFO full/empty conditions
 
-Separate read/write pointers
+Flexible Configuration
 
-Full/empty boundary conditions handled through pointer comparisons
+Configurable data format: 5-9 data bits
 
-Synchronization
-Double-flop synchronization for RX input
+Optional parity (even, odd, none)
 
-Metastability protection on asynchronous signals
+1 or 2 stop bits selection
 
-Repository Structure
-Copy
-/rtl            - Source files (Verilog/VHDL)
-  /uart_core    - Main controller logic
-  /fifo         - FIFO buffer implementation
-  /baud_gen     - Baud rate generator
-/testbench      - Verification environment
-/docs           - Documentation and timing diagrams
-Applications
-Embedded system communication
+Break character detection
 
-Serial console interfaces
+Robust Error Handling
 
-Sensor data acquisition systems
+Frame error detection
 
-FPGA-to-microcontroller communication
+Parity error checking
 
-Legacy RS-232/RS-485 interfaces
+Overflow detection
