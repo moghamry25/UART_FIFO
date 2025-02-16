@@ -70,8 +70,6 @@ always @(posedge clk or posedge reset) begin
 
                     STOP: begin
                         if (count == 15) begin // Wait 16 ticks per bit
-                           // tx <= 1; // Stop bit
-                            //count <= 0;
                             state <= IDLE;
                             tx_done_tick <= 1; // Signal end of transmission
                         end else begin
